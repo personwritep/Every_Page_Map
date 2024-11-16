@@ -315,8 +315,9 @@ window.addEventListener('load', function(){
                     start(); }
 
                 function start(){
-                    let conf_str=['　　 🔴　このページ以降の記事に関して 「公開設定MAP」を調査します',
-                                  '\n　　　　  連続動作は [ Ctrl ] キーを押すか [ ❚❚ ] のクリックで停止します'].join(' ');
+                    let conf_str=
+                        ['　　 🔴　このページ以降の記事に関して 「公開設定MAP」を調査します',
+                         '\n　　　　  連続動作は [ Ctrl ] キーを押すか [ ❚❚ ] のクリックで停止します'].join(' ');
                     let ok=confirm(conf_str);
                     if(ok){
                         blogDB[0][1]='c'; // 連続動作フラグをセット
@@ -426,7 +427,9 @@ window.addEventListener('load', function(){
                             span5.textContent=file.name;
                             now_year_disp(); }// MAPを表示
                         else{
-                            alert("   ⛔ 不適合なファイルです  blogMAP(n).json ファイルを選択してください"); }}
+                            alert(
+                                "   ⛔ 不適合なファイルです  \n"+
+                                "blogMAP(n).json ファイルを選択してください"); }}
                 }); }
 
             snap_disp();
@@ -440,8 +443,11 @@ window.addEventListener('load', function(){
     function snap_disp(){
         reg_set();
         let span7=document.querySelector('#snap_result');
-        span7.innerHTML='　記録件数：<b>' + (blogDB.length -1) + '</b>　　全員に公開：<b>' + pub_all +
-            '</b>　　アメンバー限定公開：<b>' + pub_ame + '</b>　　下書き：<b>' + pub_dra; +'</b>'; }
+        span7.innerHTML=
+            '　記録件数：<b>' + (blogDB.length -1) +
+            '</b>　　全員に公開：<b>' + pub_all +
+            '</b>　　アメンバー限定公開：<b>' + pub_ame +
+            '</b>　　下書き：<b>' + pub_dra; +'</b>'; }
 
 
 
@@ -540,9 +546,9 @@ window.addEventListener('load', function(){
         for(let k=0; k< entry_id.length; k++){
             let index=entry_id_DB.indexOf(entry_id[k].value);
             if(index==-1){ // IDがblogDBに記録されていない場合
-                blogDB.push([entry_id[k].value, publish_f[k].value, entry_date]); } // 公開設定の登録を追加
+                blogDB.push([entry_id[k].value, publish_f[k].value, entry_date]); } // 登録を追加
             else{ // IDがblogDBに記録されていた場合
-                blogDB[index]=[entry_id[k].value, publish_f[k].value, entry_date]; }} // 公開設定の登録を更新
+                blogDB[index]=[entry_id[k].value, publish_f[k].value, entry_date]; }} // 登録を更新
 
 
         let filter_date=blogDB.filter(function(value){
@@ -671,13 +677,15 @@ window.addEventListener('load', function(){
                    pub_ame>blogMAP[year_index][month][2]){
                     alert1=1; }
                 if(blogDB[0][2]==0){
-                    if((blogMAP[year_index][month][0]+blogMAP[year_index][month][1]+blogMAP[year_index][month][2])<20){
+                    if((blogMAP[year_index][month][0]+blogMAP[year_index][month][1]+
+                        blogMAP[year_index][month][2])<20){
                         alert1=1; }}}
 
             if(alert1==1){
                 let box=document.querySelector('#sorting');
                 if(box){
-                    let com1='<p id="com1">MAPと記事リストが一致しません：MAPの調査・更新　またはファイルからMAPデータの読込みが必要です</p>';
+                    let com1='<p id="com1">MAPと記事リストが一致しません：MAPの調査・更新　'+
+                        'またはファイルからMAPデータの読込みが必要です</p>';
                     if(!box.querySelector('#com1')){
                         box.insertAdjacentHTML('afterbegin', com1); }}}
 
@@ -695,7 +703,8 @@ window.addEventListener('load', function(){
             function other_alert(count, map){
                 let pagingArea=document.querySelector('form > .pagingArea');
                 if(pagingArea){
-                    let com2='<p id="com2">抽出記事の分散：<b>'+ count + '</b>　別ページ：<b>'+ (map - count) +'</b></p>';
+                    let com2='<p id="com2">抽出記事の分散：<b>'+ count + '</b>　別ページ：<b>'+
+                        (map - count) +'</b></p>';
                     if(!pagingArea.querySelector('#com2')){
                         pagingArea.insertAdjacentHTML('beforeend', com2); }}}
 
@@ -707,19 +716,32 @@ window.addEventListener('load', function(){
     function arr_disp(y){
         let arr=
             '<div class="m y_index"><p>'+blogMAP[y][0][1]+'<span class="yt">年</span></p>'+
-            '<p class="ypt">全員に公開</p><p class="ypt">　　下書き</p><p class="ypt">アメンバー</p></div>'+
-            '<div class="m"><p class="mt">1月</p><p>'+blogMAP[y][1][0]+'</p><p>'+blogMAP[y][1][1]+'</p><p>'+blogMAP[y][1][2]+'</p></div>'+
-            '<div class="m"><p class="mt">2月</p><p>'+blogMAP[y][2][0]+'</p><p>'+blogMAP[y][2][1]+'</p><p>'+blogMAP[y][2][2]+'</p></div>'+
-            '<div class="m"><p class="mt">3月</p><p>'+blogMAP[y][3][0]+'</p><p>'+blogMAP[y][3][1]+'</p><p>'+blogMAP[y][3][2]+'</p></div>'+
-            '<div class="m"><p class="mt">4月</p><p>'+blogMAP[y][4][0]+'</p><p>'+blogMAP[y][4][1]+'</p><p>'+blogMAP[y][4][2]+'</p></div>'+
-            '<div class="m"><p class="mt">5月</p><p>'+blogMAP[y][5][0]+'</p><p>'+blogMAP[y][5][1]+'</p><p>'+blogMAP[y][5][2]+'</p></div>'+
-            '<div class="m"><p class="mt">6月</p><p>'+blogMAP[y][6][0]+'</p><p>'+blogMAP[y][6][1]+'</p><p>'+blogMAP[y][6][2]+'</p></div>'+
-            '<div class="m"><p class="mt">7月</p><p>'+blogMAP[y][7][0]+'</p><p>'+blogMAP[y][7][1]+'</p><p>'+blogMAP[y][7][2]+'</p></div>'+
-            '<div class="m"><p class="mt">8月</p><p>'+blogMAP[y][8][0]+'</p><p>'+blogMAP[y][8][1]+'</p><p>'+blogMAP[y][8][2]+'</p></div>'+
-            '<div class="m"><p class="mt">9月</p><p>'+blogMAP[y][9][0]+'</p><p>'+blogMAP[y][9][1]+'</p><p>'+blogMAP[y][9][2]+'</p></div>'+
-            '<div class="m"><p class="mt">10月</p><p>'+blogMAP[y][10][0]+'</p><p>'+blogMAP[y][10][1]+'</p><p>'+blogMAP[y][10][2]+'</p></div>'+
-            '<div class="m"><p class="mt">11月</p><p>'+blogMAP[y][11][0]+'</p><p>'+blogMAP[y][11][1]+'</p><p>'+blogMAP[y][11][2]+'</p></div>'+
-            '<div class="m"><p class="mt">12月</p><p>'+blogMAP[y][12][0]+'</p><p>'+blogMAP[y][12][1]+'</p><p>'+blogMAP[y][12][2]+'</p></div>';
+            '<p class="ypt">全員に公開</p><p class="ypt">　　'+
+            '下書き</p><p class="ypt">アメンバー</p></div>'+
+            '<div class="m"><p class="mt">1月</p><p>'+blogMAP[y][1][0]+'</p><p>'+
+            blogMAP[y][1][1]+'</p><p>'+blogMAP[y][1][2]+'</p></div>'+
+            '<div class="m"><p class="mt">2月</p><p>'+blogMAP[y][2][0]+'</p><p>'+
+            blogMAP[y][2][1]+'</p><p>'+blogMAP[y][2][2]+'</p></div>'+
+            '<div class="m"><p class="mt">3月</p><p>'+blogMAP[y][3][0]+'</p><p>'+
+            blogMAP[y][3][1]+'</p><p>'+blogMAP[y][3][2]+'</p></div>'+
+            '<div class="m"><p class="mt">4月</p><p>'+blogMAP[y][4][0]+'</p><p>'+
+            blogMAP[y][4][1]+'</p><p>'+blogMAP[y][4][2]+'</p></div>'+
+            '<div class="m"><p class="mt">5月</p><p>'+blogMAP[y][5][0]+'</p><p>'+
+            blogMAP[y][5][1]+'</p><p>'+blogMAP[y][5][2]+'</p></div>'+
+            '<div class="m"><p class="mt">6月</p><p>'+blogMAP[y][6][0]+'</p><p>'+
+            blogMAP[y][6][1]+'</p><p>'+blogMAP[y][6][2]+'</p></div>'+
+            '<div class="m"><p class="mt">7月</p><p>'+blogMAP[y][7][0]+'</p><p>'+
+            blogMAP[y][7][1]+'</p><p>'+blogMAP[y][7][2]+'</p></div>'+
+            '<div class="m"><p class="mt">8月</p><p>'+blogMAP[y][8][0]+'</p><p>'+
+            blogMAP[y][8][1]+'</p><p>'+blogMAP[y][8][2]+'</p></div>'+
+            '<div class="m"><p class="mt">9月</p><p>'+blogMAP[y][9][0]+'</p><p>'+
+            blogMAP[y][9][1]+'</p><p>'+blogMAP[y][9][2]+'</p></div>'+
+            '<div class="m"><p class="mt">10月</p><p>'+blogMAP[y][10][0]+'</p><p>'+
+            blogMAP[y][10][1]+'</p><p>'+blogMAP[y][10][2]+'</p></div>'+
+            '<div class="m"><p class="mt">11月</p><p>'+blogMAP[y][11][0]+'</p><p>'+
+            blogMAP[y][11][1]+'</p><p>'+blogMAP[y][11][2]+'</p></div>'+
+            '<div class="m"><p class="mt">12月</p><p>'+blogMAP[y][12][0]+'</p><p>'+
+            blogMAP[y][12][1]+'</p><p>'+blogMAP[y][12][2]+'</p></div>';
         return arr;
     } // arr_disp(y)
 
@@ -853,7 +875,6 @@ window.addEventListener('load', function(){
             return_sw.click(); }}
 
 });
-
 
 
 
