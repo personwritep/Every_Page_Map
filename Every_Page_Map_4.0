@@ -48,13 +48,12 @@ function style_in(){
 
     let style=
         '<style id="EPS">'+
-        '#globalHeader, #ucsHeader, #ucsMainLeft h1, .l-ucs-sidemenu-area, #ucsMainRight,'+
-        '#ucsContent::before, #footerAd, #globalFooter, .selection-bar '+
-        '{ display: none !important; } '+
+        '#globalHeader, #ucsHeader, #ucsMainLeft h1, .l-ucs-sidemenu-area, .selection-bar { '+
+        'display: none !important; } '+
 
-        '#ucsContent { width: 840px !important; background: #fff; '+
-        'box-shadow: 0 0 0 100vh #c5d8e1; border-radius: 0; }'+
-        '#ucsMain { margin-top: 15px; padding: 0 !important; background: #fff; border-radius: 0; } '+
+        '#ucsContent { width: 840px !important; }'+
+        '#ucsContent::before { display: none; } '+
+        '#ucsMain { margin-top: 15px; padding: 0 !important; } '+
         '#ucsMainLeft { width: 838px !important; padding: 0 15px; float: none; } '+
 
         '#entryYear { width: 120px !important; } '+
@@ -65,7 +64,8 @@ function style_in(){
         '#entryListEdit form { display: flex; flex-direction: column } #entrySort { order: -2 }'+
         '.pagingArea { order: -1; position: relative !important; left: 0 !important; top: 0 !important; '+
         'padding: 4px 30px 4px 0; margin-bottom: -33px; background: #ddedf3 !important }'+
-        '.pagingArea a { border: 1px solid #888 } .pagingArea .active{ border: 2px solid #0066cc }'+
+        '.pagingArea a { border: 1px solid #888 } '+
+        '.pagingArea .active { border: 2px solid #0066cc }'+
         '.pagingArea a, .pagingArea .active, .pagingArea .disabled { font-size: 14px; line-height: 23px }'+
         '#sorting { margin: 38px 0 4px; padding: 4px 10px; height: 110px; '+
         'font: 14px Meiryo; background: #ddedf3; height: auto !important; }'+
@@ -845,6 +845,5 @@ window.addEventListener('load', function(){
             return_sw.click(); }}
 
 });
-
 
 
