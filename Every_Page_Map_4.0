@@ -5,6 +5,7 @@
 // @description        「記事の編集・削除」ページで全記事の「公開設定」を記録する
 // @author        Ameba Blog User
 // @match        https://blog.ameba.jp/ucs/entry/srventrylist*
+// @icon        https://www.google.com/s2/favicons?sz=64&domain=ameba.jp
 // @run-at        document-start
 // @updateURL        https://github.com/personwritep/Every_Page_Map/raw/main/Every_Page_Map.user.js
 // @downloadURL        https://github.com/personwritep/Every_Page_Map/raw/main/Every_Page_Map.user.js
